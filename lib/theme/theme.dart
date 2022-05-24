@@ -19,16 +19,16 @@ class FlutterTodosTheme {
   static ThemeData get dark {
     return ThemeData(
       appBarTheme: const AppBarTheme(
-        color: Color(0xFF13B9FF),
+        color: Color.fromARGB(255, 16, 118, 161),
       ),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.dark,
-        accentColor: const Color(0xFF13B9FF),
+        accentColor: Color.fromARGB(255, 17, 134, 184),
       ),
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
       ),
-      toggleableActiveColor: const Color(0xFF13B9FF),
+      toggleableActiveColor: Color.fromARGB(255, 10, 104, 145),
     );
   }
 }
