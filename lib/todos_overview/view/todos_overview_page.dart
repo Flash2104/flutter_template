@@ -6,6 +6,8 @@ import 'package:flutter_template/l10n/l10n.dart';
 import 'package:flutter_template/todos_overview/todos_overview.dart';
 import 'package:todos_repository/todos_repository.dart';
 
+import '../../app/bloc/app_bloc.dart';
+
 class TodosOverviewPage extends StatelessWidget {
   const TodosOverviewPage({Key? key}) : super(key: key);
 
@@ -30,7 +32,10 @@ class TodosOverviewView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.todosOverviewAppBarTitle),
-        actions: const [
+        actions: [
+          BlocBuilder<AppBloc, AppState>(
+              builder: (context, state) =>
+                  _ThemeToggleButton(selectedTheme: state.theme)),
           TodosOverviewFilterButton(),
           TodosOverviewOptionsButton(),
         ],
@@ -131,5 +136,34 @@ class TodosOverviewView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ThemeToggleButton extends StatelessWidget {
+  const _ThemeToggleButton({
+    Key? key,
+    required this.selectedTheme,
+  }) : super(key: key);
+
+  final ThemeState selectedTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // onPressed: null,
+        child: Row(
+      children: [
+        Icon(Icons.nightlight),
+        Switch(
+          onChanged: (value) => context.read<AppBloc>().add(ThemeChangePressed(
+              selectedTheme == ThemeState.light
+                  ? ThemeState.dark
+                  : ThemeState.light)),
+          value: selectedTheme == ThemeState.light,
+          activeColor: ThemeData.light().bottomAppBarColor,
+        ),
+        Icon(Icons.sunny)
+      ],
+    ));
   }
 }

@@ -29,7 +29,7 @@ class HomeView extends StatelessWidget {
         index: selectedTab.index,
         children: const [TodosOverviewPage(), StatsPage()],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         key: const Key('homeView_addTodo_floatingActionButton'),
         onPressed: () => Navigator.of(context).push(EditTodoPage.route()),
